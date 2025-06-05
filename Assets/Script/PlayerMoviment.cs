@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,8 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private bool morrer = true;
     private bool temChave = false;
     private int numeroChave = 0;
+    [SerializeField] private int forcaArremeco;
     private Vector3 anguloRotacao = new Vector3(0, 90, 0);
     [SerializeField] private float velocidadeCorrer;
+    [SerializeField] private GameObject MachadoPreFab;
+    [SerializeField] private GameObject miraMachado;
     [SerializeField] private float velocidadeAndar;
     [SerializeField] private float forcaPulo;
 
@@ -54,18 +59,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            animator.SetBool("Andar", true);
-            animator.SetBool("AndarTras", false);
+            animator.SetBool("andar", true);
+            animator.SetBool("andarTras", false);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            animator.SetBool("AndarTras", true);
-            animator.SetBool("Andar", false);
+            animator.SetBool("andarTras", true);
+            animator.SetBool("andar", false);
         }
         else
         {
-            animator.SetBool("AndarTras", false);
-            animator.SetBool("Andar", false);
+            animator.SetBool("andarTras", false);
+            animator.SetBool("andar", false);
         }
     }
 
@@ -136,11 +141,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+   private void Machado() 
+   {
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartCoroutine(LancarMachado());
+            animator.SetTrigger("machado");
+        }   
+   }
+
+    IEnumerator LancarMachado()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        GameObject machado = Instantiate(MachadoPreFab, miraMachado.transform.position, miraMachado.transform.rotation);
+        machado.transform.rotation*= quaternion.Euler(0, -90, 0);
+        Rigidbody rbMachado = machado.GetComponent<Rigidbody>();
+        rbMachado.AddForce(miraMachado.transform.forward * forcaArremeco, ForceMode.Impulse);
+        
+    }
+
     private void Perfurar()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            animator.SetTrigger("Perfurar");
+            animator.SetTrigger("perfurar");
         }
     }
 

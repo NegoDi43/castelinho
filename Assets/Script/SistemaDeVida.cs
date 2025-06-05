@@ -7,12 +7,12 @@ public class SistemaDeVida : MonoBehaviour
     [SerializeField] private int vida = 100;
     private bool estaVivo = true;
     private bool levarDano = true;
-    private PlayerMoviment pMove;
+    private PlayerMovement pMove;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pMove = GetComponent<PlayerMoviment>();
+        pMove = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
