@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Porta
   - interagir
+  - Fatal
+  - Vida
+  - Mana
+  - Floor
   layers:
   - Default
   - TransparentFX
