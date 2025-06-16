@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
                         Input.GetKey(KeyCode.LeftArrow) ||
                             Input.GetKey(KeyCode.RightArrow))
         {
-            animator.SetBool("Andar", true);
+            animator.SetBool("andar", true);
         }
     }
 
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && estaNoChao)
         {
             rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
-            animator.SetTrigger("Pular");
+            animator.SetTrigger("pular");
         }
     }
 
@@ -104,27 +104,27 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
         {
             velocidadeAtual = velocidadeCorrer;
-            animator.SetBool("Correr", true);
+            animator.SetBool("correr", true);
         }
         else
         {
             velocidadeAtual = velocidadeAndar;
-            animator.SetBool("Correr", false);
+            animator.SetBool("correr", false);
         }
     }
 
     private void Morrer()
     {
         morrer = false;
-        animator.SetBool("EstaVivo", false);
-        animator.SetTrigger("Morrer");
+        animator.SetBool("estaVivo", false);
+        animator.SetTrigger("morrer");
         rb.Sleep();
 
     }
 
     private void Interagir()
     {
-        animator.SetTrigger("Interagir");
+        animator.SetTrigger("interagir");
     }
 
     private void Pegar()
@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Atacar");
+            animator.SetTrigger("atacar");
 
         }
     }
@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             estaNoChao = true;
-            animator.SetBool("EstaNoChao", true);
+            animator.SetBool("estaNoChao", true);
         }
     }
 
@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             estaNoChao = false;
-            animator.SetBool("EstaNoChao", false);
+            animator.SetBool("estaNoChao", false);
         }
     }
 
