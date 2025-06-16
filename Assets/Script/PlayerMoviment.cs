@@ -14,10 +14,12 @@ public class PlayerMovement : MonoBehaviour
     private bool morrer = true;
     private bool temChave = false;
     private int numeroChave = 0;
+    private bool contato = false;
     [SerializeField] private int forcaArremeco;
     private Vector3 anguloRotacao = new Vector3(0, 90, 0);
     [SerializeField] private float velocidadeCorrer;
     [SerializeField] private GameObject MachadoPreFab;
+    [SerializeField] private GameObject quebraPreFab;
     [SerializeField] private GameObject miraMachado;
     [SerializeField] private float velocidadeAndar;
     [SerializeField] private float forcaPulo;
@@ -34,13 +36,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            contato = true;
+        }
+
+
         if (sVida.EstaVivo())
         {
             Andar();
             Girar();
             Pular();
             Correr();
-            Atacar();
+            
             Perfurar();
         }
         else if (!sVida.EstaVivo() && morrer)
@@ -132,13 +140,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Pegar");
     }
 
-    private void Atacar()
+    private int Atacar()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("atacar");
-
-        }
+        animator.SetTrigger("atacar");
+        Instantiate(quebraPreFab , miraMachado.transform.position, miraMachado.transform.rotation);
+        contato = false;
+        return 10;
     }
 
    private void Machado() 
@@ -231,6 +238,14 @@ public class PlayerMovement : MonoBehaviour
             numeroChave = other.gameObject.GetComponent<Chave>().NumeroPorta();
             temChave = true;
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Quebra"))
+        {
+            if(contato)
+            {
+                other.gameObject.GetComponent<objetoQuebra>().Quebrar(Atacar());
+            }
         }
 
     }
