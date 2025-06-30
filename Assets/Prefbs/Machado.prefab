@@ -4942,8 +4942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbda0e51161fa944fbffcb01e977a9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dano: 0
-  destroyMachadoPreFab: {fileID: 0}
+  dano: 10
+  destroyMachadoPreFab: {fileID: 4775265438940818019}
 --- !u!64 &8693184224557475079
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class SistemaDeVida : MonoBehaviour
 {
     [SerializeField] private int vida = 100;
     [SerializeField] private int mana = 100;
+    [SerializeField] private GameObject telaDeMorte;
     [SerializeField] private Slider manaIndicador;
     [SerializeField] private Slider vidaIndicador;
     private bool estaVivo = true;
@@ -16,6 +18,19 @@ public class SistemaDeVida : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        procuraReferencia();
+
+        pMove = GetComponent<PlayerMovement>();
+        if (telaDeMorte.activeSelf == true)
+        {
+            telaDeMorte.SetActive(false);
+        }
+    }
+
+        public void procuraReferencia()
+    {
+
+
         if (manaIndicador == null)
         {
             manaIndicador = GameObject.Find("Mana").GetComponent<Slider>();
@@ -33,10 +48,11 @@ public class SistemaDeVida : MonoBehaviour
         pMove = GetComponent<PlayerMovement>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-
+        procuraReferencia();
     }
 
     public bool EstaVivo()
@@ -50,6 +66,10 @@ public class SistemaDeVida : MonoBehaviour
         {
             StartCoroutine(LevarDano(10));
         }
+        if (collision.gameObject.CompareTag("IK") && estaVivo && levarDano)
+        {
+            StartCoroutine (LevarDano(50));
+        }
     }
 
     IEnumerator LevarDano(int dano)
@@ -58,7 +78,7 @@ public class SistemaDeVida : MonoBehaviour
 
         if (vida > 0)
         {
-            pMove.Hit(); // Chama o método Hit do PlayerMovement para executar a animação de dano
+            pMove.Hit();
             vida -= dano;
             vidaIndicador.value = vida;
             VerificarVida();
@@ -73,7 +93,13 @@ public class SistemaDeVida : MonoBehaviour
         {
             vida = 0;
             estaVivo = false;
+            TelaDeMorte();
         }
+    }
+
+    private void TelaDeMorte()
+    {
+        telaDeMorte.SetActive(true);
     }
     public void CargaMana(int carga)
     {

@@ -12,6 +12,8 @@ TagManager:
   - Floor
   - Chave
   - Quebra
+  - Item
+  - IK
   layers:
   - Default
   - TransparentFX
