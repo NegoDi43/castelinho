@@ -204,8 +204,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 141210920}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: credito
+        m_TargetAssemblyTypeName: mudar, Assembly-CSharp
+        m_MethodName: MudarParaCreditos
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -262,10 +262,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 141210915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3273387f8c892244961c85b132c73f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 31bb450e5063f3248ae988653f8a23ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  som: {fileID: 0}
+  nomeDaProximaFase: 
+  tempoDeTransicao: 1
+  efeitoFade: {fileID: 0}
 --- !u!1001 &195664622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1493,8 +1495,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1261867596}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: comeco
+        m_TargetAssemblyTypeName: mudar, Assembly-CSharp
+        m_MethodName: MudarParaInicio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1551,10 +1553,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261867591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3273387f8c892244961c85b132c73f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 31bb450e5063f3248ae988653f8a23ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  som: {fileID: 0}
+  nomeDaProximaFase: 
+  tempoDeTransicao: 1
+  efeitoFade: {fileID: 0}
 --- !u!1001 &1293740777
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,10 +21,14 @@ public class SistemaDeVida : MonoBehaviour
         procuraReferencia();
 
         pMove = GetComponent<PlayerMovement>();
-        if (telaDeMorte.activeSelf == true)
+        if (vida == 0)
         {
-            telaDeMorte.SetActive(false);
-        }
+
+            if (telaDeMorte.activeSelf == true)
+            {
+                telaDeMorte.SetActive(false);
+            }
+        }  
     }
 
         public void procuraReferencia()
