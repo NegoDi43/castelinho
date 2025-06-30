@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("estaVivo", false);
         animator.SetTrigger("morrer");
         rb.Sleep();
+        
 
     }
 
