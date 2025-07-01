@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             Girar();
             Pular();
             Correr();
-            
+            Machado();
             Perfurar();
         }
         else if (!sVida.EstaVivo() && morrer)
@@ -167,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         machado.transform.rotation*= quaternion.Euler(0, -90, 0);
         Rigidbody rbMachado = machado.GetComponent<Rigidbody>();
         rbMachado.AddForce(miraMachado.transform.forward * forcaArremeco, ForceMode.Impulse);
+        sVida.UsarMana();
         
     }
 
@@ -251,6 +252,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    IEnumerator LancarObjeto()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameObject machado = Instantiate(MachadoPreFab, miraMachado.transform.position, miraMachado.transform.rotation);
+        machado.transform.rotation *= Quaternion.Euler(0, -180, 0);
+        Rigidbody rbMachado = machado.GetComponent<Rigidbody>();
+        rbMachado.AddForce(miraMachado.transform.forward * forcaArremeco, ForceMode.Acceleration);
+        sVida.UsarMana();
+    }
+
 
 }
 
